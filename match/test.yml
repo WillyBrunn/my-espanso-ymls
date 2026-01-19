@@ -1,0 +1,15 @@
+matches:
+  #written internal
+  - trigger: "!wi"
+    form: |
+      Hey [[name]],
+      [[choices]]
+    form_fields:
+      choices:
+        multiline: true
+        type: choice
+        values:
+          - "First choice
+            \nsample text"
+          - "Second choice
+            \nanother sample"
