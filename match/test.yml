@@ -1,17 +1,63 @@
 # Forms: https://espanso.org/docs/matches/forms/
 
+
+global_vars:
+  - name: long1
+    type: echo
+    params:
+      echo: To log into your Jellyfin LXC console in Proxmox, 
+        open the container's console from the Proxmox GUI (under the "Console" tab), 
+        use root as the username, 
+        and then enter the password you set during the initial container setup or Jellyfin installation; 
+        you'll likely need curl to run the install script first and then access Jellyfin via its IP:8096 in a browser for web UI, 
+        while the console is for command-line tasks like mounting shares.
+  - name: long2
+    type: echo
+    params:
+      echo: Snow
+
+
 matches:
   #written internal
   - trigger: "!wi"
     form: |
       Hey [[name]],
       [[choices]]
+    params:
+      fields:
+        choices:
+          multiline: true
     form_fields:
       choices:
-        multiline: true
         type: choice
         values:
           - "First choice
-            \nsample text"
-          - "Second choice
-            \nanother sample"
+            To log into your Jellyfin LXC console in Proxmox, 
+            open the container's console from the Proxmox GUI (under the \"Console\" tab), 
+            use root as the username, 
+            and then enter the password you set during the initial container setup or Jellyfin installation; 
+            you'll likely need curl to run the install script first and then access Jellyfin via its IP:8096 in a browser for web UI, 
+            while the console is for command-line tasks like mounting shares."
+          - > 
+            another sam
+
+  - trigger: "!test"
+    # Match to illustrate use of choice extension when some options are multiline
+    replace: '{{output}}'
+    vars:
+      - name: output
+        type: choice
+        params:
+          values:
+            - 'test 1'
+            - >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            - 'test 2'
+            - >
+              Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit
+              anim id est laborum.

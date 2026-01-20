@@ -57,5 +57,7 @@ search_shortcut: OFF
 
 match_paths: [
     "/Users/willybrunn/Library/Application Support/espanso/match/base.yml",
-    "/Users/willybrunn/Dev/Git/personal/Espanso_match/custom.yml",
 ]
+
+max_form_width: 100
+max_form_height: 600
